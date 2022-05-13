@@ -1,0 +1,74 @@
+
+
+public class columnarPractice {
+    public static String encryption(String s, String key)
+    {
+        int col=key.length();
+        int k=0;
+        int row=s.length()/key.length()+1;
+        char arr[][]=new char[row][col];
+        for (int i = 0; i < row ; i++) {
+
+            for (int j = 0; j < col; j++) {
+                if(s.length()>k) {
+                    if (s.charAt(k) != ' ') {
+                        arr[i][j] = s.charAt(k);
+                    } else {
+                        arr[i][j] = '-';
+                    }
+                    k++;
+                }
+                else {
+                    arr[i][j]='-';
+                }
+            }
+        }
+        for (int i = 0; i < row ; i++) {
+            for (int j = 0; j < col ; j++) {
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+        String str="";
+        for (int i = 0; i < key.length() ; i++) {
+            for (int j = 0; j < row ; j++) {
+
+                    str+=arr[j][Character.getNumericValue(key.charAt(i))-1];
+
+            }
+        }
+        return str;
+    }
+    public static String descryption(String s,String key)
+    {
+        int col=key.length();
+        int k=0;
+        int row=s.length()/key.length();
+        char arr[][]=new char[row][col];
+        for (int i = 0; i < key.length() ; i++) {
+            for (int j = 0; j < row; j++) {
+                arr[j][Character.getNumericValue(key.charAt(i))-1]=s.charAt(k);
+                k++;
+            }
+        }
+        String str="";
+        for (int i = 0; i < row ; i++) {
+            for (int j = 0; j < col ; j++) {
+               if(arr[i][j]!='-')
+               {
+                   str+=arr[i][j];
+               }
+               else
+               {
+                   str+=" ";
+               }
+            }
+
+        }
+        return str;
+    }
+    public static void main(String[] args) {
+//        System.out.println(encryption("hello i am tushar","4312"));
+        System.out.println(descryption("l-ta-li-h-hoaure-ms-","4312"));
+    }
+}
